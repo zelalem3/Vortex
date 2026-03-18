@@ -1,11 +1,13 @@
 import express from 'express';
-import { createServer } from 'http'; // Modern import
+import { createServer } from 'http'; 
 import { Server } from 'socket.io';
 import { Redis } from 'ioredis';
 import { vortexQueue } from './queue.js';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 
 const httpServer = createServer(app);
@@ -49,7 +51,7 @@ app.post('/tasks', async (req, res) => {
   }
 });
 
-// 3. CRITICAL: Start the httpServer, NOT app.listen
+
 const PORT = 3001;
 httpServer.listen(PORT, () => {
   console.log(`🚀 Vortex API & Socket Server running on http://localhost:${PORT}`);
