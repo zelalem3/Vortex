@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "axios": "^1.13.6",
+    "bullmq": "^5.71.0"
+  },
+  "scripts": {
+  "dev:api": "nodemon --watch 'api/**/*' --watch 'shared/**/*' -e ts --exec 'node --loader ts-node/esm api/src/server.ts'",
+  "dev:worker": "nodemon --watch 'worker/**/*' --watch 'shared/**/*' -e ts --exec 'node --loader ts-node/esm worker/src/processor.ts'",
+  "dev": "concurrently \"npm run dev:api\" \"npm run dev:worker\""
+}
+}

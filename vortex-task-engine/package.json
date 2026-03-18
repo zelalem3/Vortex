@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:api": "nodemon --watch 'api/**/*' --watch 'shared/**/*' -e ts --exec 'node --import tsx api/src/server.ts'",
+    "dev:worker": "nodemon --watch 'worker/**/*' --watch 'shared/**/*' -e ts --exec 'node --import tsx worker/src/processor.ts'",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:worker\""
   },
   "keywords": [],
   "author": "",
@@ -14,5 +17,9 @@
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.8.3",
+    "tsx": "^4.21.0"
   }
 }
